@@ -1,6 +1,6 @@
 - name: Frontend Setup
 - hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install the latest version of nginx
       ansible.builtin.dnf:
