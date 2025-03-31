@@ -1,0 +1,79 @@
+- name: Disable existing Nodejs version
+  hosts: all
+  become: true
+  tasks:
+    - name: Disable existing nodejs
+      ansible.builtin.shell:
+        cmd: dnf module disable nodejs -y
+
+    - name: Enable Latest version of nodejs
+      ansible.builtin.shell:
+        cmd: dnf module enable nodejs:20 -y
+
+    - name: Install Nodejs
+      ansible.builtin.dnf:
+        name: Nodejs
+        state: Installed
+
+    - name: Configure Backend service file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+
+    - name: Add the user Expense
+      ansible.builtin.user:
+        name: expense
+
+    - name: Remove the content from existing path
+      ansible.builtin.file:
+        path: /app
+        state: absent
+
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /app
+        state: directory
+
+    - name: Download the Content and Extract the Application content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+        dest: /app
+        remote_src: yes
+
+    - name: Install "coffee-script" node.js package.
+      community.general.npm:
+        name: npm
+        path: /app
+
+    - name: Enable and start services
+      ansible.builtin.systemd_service:
+        state: started
+        name: backend
+        enabled: true
+
+    - name: Install mysql client
+      ansible.builtin.dnf:
+        name: mysql
+        state: Installed
+
+    - name: Install Python library for mysql
+      ansible.builtin.dnf:
+        name:
+          - python3
+          - python3-pip
+        state: Installed
+
+    - name: load schema
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        encoding: latin1
+        target: /app/schema/backend.sql
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: mysql-dev.tejudevops.online
+
+
+
+
+
