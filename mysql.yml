@@ -1,5 +1,6 @@
 - name: MYSQL Setup
   hosts: all
+  become: true
   tasks:
     - name: Disable current MySQL module
       ansible.builtin.shell:
