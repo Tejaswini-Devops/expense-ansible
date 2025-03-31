@@ -13,7 +13,7 @@
     - name: Install Nodejs
       ansible.builtin.dnf:
         name: Nodejs
-        state: Installed
+        state: installed
 
     - name: Configure Backend service file
       ansible.builtin.copy:
