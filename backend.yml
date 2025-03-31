@@ -63,6 +63,11 @@
           - python3-pip
         state: installed
 
+    - name: Install PyMySQL for MySQL support
+      pip:
+        name: pymysql
+        executable: pip3
+
     - name: load schema
       community.mysql.mysql_db:
         state: import
