@@ -20,7 +20,7 @@
         src: backend.service
         dest: /etc/systemd/system/backend.service
 
-    - name: Add the user Expense
+    - name: Adding the Application User
       ansible.builtin.user:
         name: expense
 
@@ -29,7 +29,7 @@
         path: /app
         state: absent
 
-    - name: Create a directory if it does not exist
+    - name: Create App directory
       ansible.builtin.file:
         path: /app
         state: directory
@@ -38,17 +38,16 @@
       ansible.builtin.unarchive:
         src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
         dest: /app
-        remote_src: yes
+        remote_src: true
 
     - name: Install Dependencies.
       community.general.npm:
-        name: npm
         path: /app
 
     - name: Enable and start services
       ansible.builtin.systemd_service:
-        state: started
         name: backend
+        state: restarted
         enabled: true
 
     - name: Install mysql client
@@ -58,15 +57,8 @@
 
     - name: Install Python library for mysql
       ansible.builtin.dnf:
-        name:
-          - python3
-          - python3-pip
+        name: python3-PyMySQL
         state: installed
-
-    - name: Install PyMySQL for MySQL support
-      pip:
-        name: pymysql
-        executable: pip3
 
     - name: load schema
       community.mysql.mysql_db:
