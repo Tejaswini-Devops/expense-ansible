@@ -36,7 +36,7 @@
 
     - name: Download the Content and Extract the Application content
       ansible.builtin.unarchive:
-        src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+        src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
         dest: /app
         remote_src: yes
 
@@ -72,7 +72,6 @@
       community.mysql.mysql_db:
         state: import
         name: all
-        encoding: latin1
         target: /app/schema/backend.sql
         login_user: root
         login_password: ExpenseApp@1
