@@ -61,7 +61,7 @@
         name:
           - python3
           - python3-pip
-        state: Installed
+        state: installed
 
     - name: load schema
       community.mysql.mysql_db:
