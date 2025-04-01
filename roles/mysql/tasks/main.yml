@@ -1,0 +1,22 @@
+- name: Disable current MySQL module
+  ansible.builtin.shell:
+    cmd: dnf module disable mysql -y
+
+- name: create and copy repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Install my sql 5.7 as per developer choice
+  ansible.builtin.dnf:
+    name: mysql-community-server
+    state: installed
+
+- name: Enable and restart services
+  ansible.builtin.systemd:
+    state: restarted
+    name: mysqld
+
+- name: Change the default password
+  ansible.builtin.shell:
+    cmd: mysql_secure_installation --set-root-pass ExpenseApp@1
