@@ -32,15 +32,14 @@
     state: restarted
     enabled: true
 
-- name: Install mysql client
+- name: Install mysql client and Python
   ansible.builtin.dnf:
-    name: mysql
+    name: {{ item }}
     state: installed
+  loop:
+    - mysql
+    - python3-PyMySQL
 
-- name: Install Python library for mysql
-  ansible.builtin.dnf:
-    name: python3-PyMySQL
-    state: installed
 
 - name: load schema
   community.mysql.mysql_db:
