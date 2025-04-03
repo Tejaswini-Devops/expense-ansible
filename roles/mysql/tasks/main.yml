@@ -19,4 +19,4 @@
 
 - name: Change the default password
   ansible.builtin.shell:
-    cmd: mysql_secure_installation --set-root-pass ExpenseApp@1
+    cmd: mysql_secure_installation --set-root-pass "{{ lookup('amazon.aws.aws_ssm', 'dev.mysql.root_password', region='us-east-1' ) }}"
