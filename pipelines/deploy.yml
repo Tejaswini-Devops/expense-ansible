@@ -27,3 +27,52 @@ pipelines:
                       - -l
                       - -A
 #                    run_if: passed
+      - QA:
+          fetch_materials: true
+          approval:
+            type: manual
+          #            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+      - UAT:
+          fetch_materials: true
+          approval:
+            type: manual
+          #            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+      - Prod:
+          fetch_materials: true
+          approval:
+            type: manual
+          #            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+
