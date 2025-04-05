@@ -12,15 +12,13 @@
     state: installed
 
 - name: Configure Backend service file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
 
 - name: Adding the Application User
   ansible.builtin.user:
     name: expense
-
-
 
 - name: Install Dependencies.
   community.general.npm:
