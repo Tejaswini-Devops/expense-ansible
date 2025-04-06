@@ -1,76 +1,76 @@
-#format_version: 10
-#pipelines:
-#  frontend:
-#    group: defaultGroup
-#    label_template: ${COUNT}
-#    lock_behavior: none
-#    display_order: -1
-#    materials:
-#      ansible:
-#        git: https://github.com/Tejaswini-Devops/expense-ansible
-#        shallow_clone: false
-#        auto_update: true
-#        branch: main
-#    stages:
-#      - dev:
-#          fetch_materials: true
-#          approval:
-#            type: manual
-#            allow_only_on_success: false
-#          jobs:
-#            test:
-#              timeout: 0
-#              tasks:
-#                - exec:
-#                    command: ansible-playbook
-#                    arguments: ["-i","frontend-dev.tejudevops.online,","expense.yml","-e","ansible_username=centos","-e","ansible_password=DevOps321","-e", "service_name=frontend", "-e" ,"env=dev"]
-##                    run_if: passed
-#      - QA:
-#          fetch_materials: true
-#          approval:
-#            type: manual
-#            allow_only_on_success: false
-#          jobs:
-#            dev:
-#              timeout: 0
-#              tasks:
-#                - exec:
-#                    command: ls
-#                    arguments:
-#                      - -l
-#                      - -A
-#    #                    run_if: passed
-#
-#      - UAT:
-#          fetch_materials: true
-#          approval:
-#            type: manual
-#            allow_only_on_success: false
-#          jobs:
-#            test:
-#              timeout: 0
-#              tasks:
-#                - exec:
-#                    command: ls
-#                    arguments:
-#                      - -l
-#                      - -A
-#    #                    run_if: passed
-#
-#      - Prod:
-#          fetch_materials: true
-#          approval:
-#            type: manual
-#            allow_only_on_success: false
-#          jobs:
-#            deployment:
-#              timeout: 0
-#              tasks:
-#                - exec:
-#                    command: ls
-#                    arguments:
-#                      - -l
-#                      - -A
-#    #                    run_if: passed
-#
-#
+format_version: 10
+pipelines:
+  frontend:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      ansible:
+        git: https://github.com/Tejaswini-Devops/expense-ansible
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - dev:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ansible-playbook
+                    arguments: ["-i","frontend-dev.tejudevops.online,","expense.yml","-e","ansible_username=centos","-e","ansible_password=DevOps321","-e", "service_name=frontend", "-e" ,"env=dev"]
+#                    run_if: passed
+      - QA:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            dev:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+      - UAT:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+      - Prod:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            deployment:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: ls
+                    arguments:
+                      - -l
+                      - -A
+    #                    run_if: passed
+
+
