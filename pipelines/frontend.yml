@@ -63,7 +63,7 @@ pipelines:
             type: manual
             allow_only_on_success: false
           jobs:
-            test:
+            deployment:
               timeout: 0
               tasks:
                 - exec:
