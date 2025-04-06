@@ -19,7 +19,7 @@ pipelines:
             allow_only_on_success: false
           jobs:
             test:
-              timeout: 0
+              timeout: 00
               tasks:
                 - exec:
                     command: ansible-playbook
