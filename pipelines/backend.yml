@@ -23,7 +23,7 @@ pipelines:
               tasks:
                 - exec:
                     command: ansible-playbook
-                    arguments: ["i","backend-dev.tejudevops.online,","expense.yml","-e","ansible_username=centos","-e","ansible_password=DevOps321","-e", "service_name=backend","env=dev"]
+                    arguments: ["i","backend-dev.tejudevops.online,","expense.yml","-e","ansible_username=centos","-e","ansible_password=DevOps321","-e", "service_name=backend","-e" ,"env=dev"]
 #                    run_if: passed
       - QA:
           fetch_materials: true
