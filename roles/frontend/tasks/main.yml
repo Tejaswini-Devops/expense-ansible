@@ -7,14 +7,17 @@
   ansible.builtin.template:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
+    mode: '0644'  # optional but good practice
+    owner: root
+    group: root
 
-- name: App Prerequistes
+- name: App Prerequisites
   ansible.builtin.include_role:
     name: common
     tasks_from: app_prereq
 
-- name: Start and enable Nginx Services
-  ansible.builtin.systemd_service:
+- name: Start and enable Nginx service
+  ansible.builtin.systemd:
     name: nginx
     enabled: true
     state: restarted
