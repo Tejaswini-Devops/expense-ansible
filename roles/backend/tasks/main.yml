@@ -29,11 +29,12 @@
   community.general.npm:
     path: /app
 
-- name: Enable and start services
+- name: Reloading systemD and Enable and start services
   ansible.builtin.systemd_service:
     name: backend
     state: restarted
-    enabled: true
+    enabled: yes
+    daemon-reload: yes
 
 - name: Install mysql client and Python
   ansible.builtin.dnf:
