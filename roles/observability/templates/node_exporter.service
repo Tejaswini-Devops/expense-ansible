@@ -6,3 +6,5 @@
 
   [Install]
   WantedBy=multi-user.target
+
+#the node exporter is prsent under cat/etc/system/systemd/node_exporter.service
