@@ -29,7 +29,7 @@ filebeat.inputs:
 
     # Paths that should be crawled and fetched. Glob based paths.
     paths:
-      - {{ log}}
+      - {{ logfile_path }}
       #- c:\programdata\elasticsearch\logs\*
 
       # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -50,8 +50,8 @@ filebeat.inputs:
 
       # Optional additional fields. These fields can be freely picked
       # to add additional information to the crawled log files for filtering
-      #fields:
-      #  level: debug
+    fields:
+      component: {{ component }}
       #  review: 1
 
       # journald is an input for collecting logs from Journald
@@ -159,13 +159,13 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 # ---------------------------- Elasticsearch Output ----------------------------
-output.elasticsearch:
+#output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["localhost:9200"]
+ # hosts: ["localhost:9200"]
 
   # Performance preset - one of "balanced", "throughput", "scale",
   # "latency", or "custom".
-  preset: balanced
+  #preset: balanced
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"
