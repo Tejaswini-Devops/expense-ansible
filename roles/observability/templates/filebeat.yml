@@ -52,7 +52,7 @@ filebeat.inputs:
       # to add additional information to the crawled log files for filtering
     fields:
       component: {{ component }}
-      #  review: 1
+      #  review: 10
 
       # journald is an input for collecting logs from Journald
       #- type: journald
