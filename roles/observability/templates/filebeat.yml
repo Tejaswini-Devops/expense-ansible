@@ -176,7 +176,7 @@ setup.kibana:
   #password: "changeme"
 
   # ------------------------------ Logstash Output -------------------------------
-  output.logstash:
+output.logstash:
   # The Logstash hosts
   hosts: ["logstash.tejudevops.online:5044"]
 
